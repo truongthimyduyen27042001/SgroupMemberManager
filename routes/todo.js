@@ -1,8 +1,14 @@
 const router = require("express").Router();
 const Todo = require("../models/Todo");
 
+const authMiddleware = (req, res, next) => {
+  const id = req.params;
+  if (id !== 5) return res.json({message: 'Error message'});
+  next();
+};
+
 router
-  .post("/add", (req, res) => {
+  .post("/add", authMiddleware, (req, res) => {
     const todo = req.body;
     console.log(req.body);
     const newTodo = new Todo(todo);
@@ -30,14 +36,12 @@ router
     console.log("id: ", id);
     await Todo.updateOne({ _id: id }, newTodo)
       .then(async () => {
-        const allTodo = await Todo.find()
-        console.log('thuc hien thanh cong')
-        res.send(allTodo)
+        const allTodo = await Todo.find();
+        console.log("thuc hien thanh cong");
+        res.send(allTodo);
       })
       .catch(() => res.send("That bai"));
   })
-  .post('/updateAll', async (req, res) => {
-
-  })
+  .post("/updateAll", async (req, res) => {});
 
 module.exports = router;
