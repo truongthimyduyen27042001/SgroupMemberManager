@@ -8,6 +8,14 @@ const authMiddleware = (req, res, next) => {
 };
 
 router
+  .get('/', (req, res) => {
+    Todo.find()
+      .sort()
+      .then((data) => {
+        res.json(data)
+      })
+      .catch(() => res.render('error: ', error))
+  })
   .post("/add", authMiddleware, (req, res) => {
     const todo = req.body;
     console.log(req.body);
