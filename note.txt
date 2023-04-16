@@ -1,0 +1,37 @@
+composite 
+primary
+1/ Lấy tất cả những khóa học Tưởng đã đăng ký 
+=> select * from Course inner join Register on Course.id = Register.course where Register.student = 1;
+=> select * from Course where id_course in (select Course from Register where Student = 1)
+=> select * from Course INNER JOIN (Select * from Register where Student = 1) as new_table on Course.id_course = new_table.course;
+
+2/ Lấy tất cả những SV đã đăng ký khóa C++
+=> select * from Member inner join Register on Member.id = Register.student where Register.course = 2;
+=> select name from Member where id in (Select student  from Register where course=2);
+=> select name from Member inner join (Select * from Register where id_course=2) as new_table on Member.id = Register.student;
+
+3/ Lấy tên sinh viên, tên khóa học của all lượt đăng ký 
+=> select Member.name , Course.name from Member join Register on Member.id = Register.student join Course on Course.id = Register.course 
+
+4/ Lấy tất cả sinh viên từng đăng ký khóa học
+=> select name from Member where Member.id in (Select student from Register);
+
+5/ Thống kê số lượng  đăng ký số lựot đăng ký của các khóa học
+=> select Course.name, count(Register.student) as so_luong  from Course inner join Register on Register.course = Course.id_course group by Register.course;
+
+5-b/ Thống kê số lượng đăng ký của mỗi sinh viên
+=> Select Student.name, count(Register.student) from Student inner JOIN Register on Student.id = Register.student group by Register.student;
+=> 
+
+6/ Select unique 
+=> select distinct student from Register;
+
+7/ Lấy 3 lượt đăng ký khóa C++ sớm nhất;
+=> select * from Register where course = 2  order by register_date limit 3;
+
+
+//SQL injection
+
+//BTVN
+config dotenv
+

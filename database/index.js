@@ -16,7 +16,7 @@
 // //using `${item} to pass params to data`
 // //using (?, ?, ?) to pass params to data
 // //connect sql without injection
-// //mysql parameterized quer
+// //mysql parameterized query
 
 // connection.query("select * from Item", (error, result) => {
 //   console.log('error: ', error)
