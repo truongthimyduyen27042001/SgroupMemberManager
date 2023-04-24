@@ -46,6 +46,8 @@ connection.query(`insert into Student(fullName, gender, age) values(?,?,?)`, ['T
 connection.query(`insert into Student(fullName, gender, age) values(?,?,?)`, ['Le Tuan 1', false, 30])
 connection.query(`insert into Student(fullName, gender, age) values(?,?,?)`, ['Le Tuan 2', false, 25])
 connection.query(`insert into Student(fullName, gender, age) values(?,?,?)`, ['Truong Thi My Duyen 2', false, 21])
+connection.query(`insert into Student(fullName, gender, age) values(?,?,?)`, ['Truong Thi My Duyen 5', false, 21])
+connection.query(`insert into Student(fullName, gender, age) values(?,?,?)`, ['Truong Thi My Duyen 9', false, 21])
 
 
 console.log('done')
