@@ -1,18 +1,9 @@
-const router = require("express").Router();
-const Todo = require("../models/Todo");
+const express = require("express");
+const router = express.Router();
+const authRouter = require("./auth");
+const usersRouter = require("./users");
 
-//router will be here .....
-router.get("/", async (req, res) => {
-  const allTodo = await Todo.find()
-  res.json(allTodo)
-});
-
-router.delete('/', async(req, res) => {
-  await Todo.deleteMany().then(() => {
-    res.send("Thuc hien xoa thanh cong")
-  }).catch(() => {
-    res.send("thuc hien xoa khong thanh cong")
-  })
-})
+router.use("/", authRouter);
+router.use("/users", usersRouter);
 
 module.exports = router;
